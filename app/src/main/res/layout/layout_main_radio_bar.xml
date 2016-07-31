@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/main_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/main_titlebar_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+    <RadioButton
+        android:id="@+id/radio_bar_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableTop="@drawable/radio_btn_home_selector"
+        android:gravity="center"
+        android:text="首页"
+        android:textColor="@color/radiobar_text_selector"
+        android:textSize="12sp"
+        />
+
+    <RadioButton
+        android:id="@+id/radio_bar_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableTop="@drawable/radio_btn_category_selector"
+        android:gravity="center"
+        android:text="品类"
+        android:textColor="@color/radiobar_text_selector"
+        android:textSize="12sp"
+        />
+
+    <RadioButton
+        android:id="@+id/radio_bar_discover"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableTop="@drawable/radio_btn_discover_selector"
+        android:gravity="center"
+        android:text="发现"
+        android:textColor="@color/radiobar_text_selector"
+        android:textSize="12sp"
+        />
+
+    <RadioButton
+        android:id="@+id/radio_bar_my"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableTop="@drawable/radio_btn_my_selector"
+        android:gravity="center"
+        android:text="我的"
+        android:textColor="@color/radiobar_text_selector"
+        android:textSize="12sp"
+        />
+
+</RadioGroup>
