@@ -39,8 +39,12 @@ public class MyFragment extends AppBaseFragment {
     ImageView mTitlebarNosearchSearchIv;
     @BindView(R.id.main_titlebar_progress_view)
     View mTitlebarProgressView;
+
     private Context mContext;
     private MainActivity mMainActivity;
+
+    public MyFragment() {
+    }
 
     public MyFragment(Context context) {
         this.mContext = context;

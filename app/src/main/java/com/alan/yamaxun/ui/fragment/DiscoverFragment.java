@@ -52,6 +52,9 @@ public class DiscoverFragment extends AppBaseFragment {
         return null;
     }
 
+    public DiscoverFragment() {
+    }
+
     public DiscoverFragment(Context context) {
         this.mContext = context;
         this.mMainActivity = (MainActivity) mContext;

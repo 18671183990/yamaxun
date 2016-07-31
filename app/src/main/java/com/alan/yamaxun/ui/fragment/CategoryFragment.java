@@ -41,6 +41,9 @@ public class CategoryFragment extends AppBaseFragment {
     private Context mContext;
     private MainActivity mMainActivity;
 
+    public CategoryFragment() {
+    }
+
     public CategoryFragment(Context context) {
         this.mContext = context;
         this.mMainActivity = (MainActivity) mContext;

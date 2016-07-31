@@ -3,6 +3,8 @@ package com.alan.yamaxun.ui.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.alan.yamaxun.R;
+import com.alan.yamaxun.config.Constans;
 import com.alan.yamaxun.ui.activity.MainActivity;
+import com.alan.yamaxun.ui.adapter.HomeBannerPagerAdapter;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,11 +44,14 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     View mProgressView;
     @BindView(R.id.main_titlebar_search_container)
     RelativeLayout mSearchContainer;
+    @BindView(R.id.home_content_viewpager)
+    ViewPager mBannerViewPager;
 
     private Context mContext;
     private MainActivity mMainActivity;
 
-
+    public HomeFragment() {
+    }
 
     public HomeFragment(Context context) {
         this.mContext = context;
@@ -53,9 +62,34 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.layout_home_fragment_content, null, false);
+        View rootView = inflater.inflate(R.layout.layout_home_fragment_container, null, false);
         ButterKnife.bind(this, rootView);
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initData();
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+
+        //TODO:
+        Log.d(TAG, "initData: ");
+        ArrayList<ImageView> mBannerList = new ArrayList<>();
+        for (int pic : Constans.bannerPics) {
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            ImageView imageView = new ImageView(getActivity());
+            imageView.setLayoutParams(params);
+            imageView.setImageResource(pic);
+            mBannerList.add(imageView);
+        }
+        HomeBannerPagerAdapter homeBannerPagerAdapter = new HomeBannerPagerAdapter(mBannerList);
+        mBannerViewPager.setAdapter(homeBannerPagerAdapter);
     }
 
     @Override
