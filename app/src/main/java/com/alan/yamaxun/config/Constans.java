@@ -14,8 +14,8 @@ public interface Constans {
     int[] bannerPics = {R.mipmap.banner1, R.mipmap.banner2, R.mipmap.banner3};  //轮播图的假数据
     int[] shoesIcons = {
             R.mipmap.xiezi1, R.mipmap.xiezi2, R.mipmap.xiezi3, R.mipmap.xiezi4,
-            R.mipmap.xiezi5, R.mipmap.xiezi6, R.mipmap.xiezi1, R.mipmap.xiezi2,
-            R.mipmap.xiezi3, R.mipmap.xiezi4, R.mipmap.xiezi5, R.mipmap.xiezi12};
+            R.mipmap.xiezi5, R.mipmap.xiezi6, R.mipmap.xiezi7, R.mipmap.xiezi8,
+            R.mipmap.xiezi9, R.mipmap.xiezi10, R.mipmap.xiezi11, R.mipmap.xiezi12};
 
     String[] shoesDescs = {
             "年轻时尚,运动首选", "年轻时尚,简单轻便", "高贵奢华,充满活力信息", "时尚保暖,上档次",
