@@ -11,5 +11,5 @@ import com.alan.yamaxun.R;
  * desc:    TODO
  */
 public interface Constans {
-    int[] bannerPics = {R.mipmap.banner1, R.mipmap.banner2, R.mipmap.banner3};
+    int[] bannerPics = {R.mipmap.banner1, R.mipmap.banner2, R.mipmap.banner3};  //轮播图的假数据
 }

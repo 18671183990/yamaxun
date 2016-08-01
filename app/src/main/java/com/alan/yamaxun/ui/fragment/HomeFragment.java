@@ -3,7 +3,6 @@ package com.alan.yamaxun.ui.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +15,15 @@ import android.widget.RelativeLayout;
 import com.alan.yamaxun.R;
 import com.alan.yamaxun.config.Constans;
 import com.alan.yamaxun.ui.activity.MainActivity;
-import com.alan.yamaxun.ui.adapter.HomeBannerPagerAdapter;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.bingoogolapple.bgabanner.BGABanner;
 
 /**
  * projectName: yamaxun
@@ -32,7 +33,7 @@ import butterknife.OnClick;
  * time:    2016/7/30	23:57
  * desc:    TODO
  */
-public class HomeFragment extends AppBaseFragment implements Animation.AnimationListener {
+public class HomeFragment extends AppBaseFragment implements Animation.AnimationListener, BGABanner.OnItemClickListener, BGABanner.Adapter {
 
     @BindView(R.id.main_titlebar_logo_iv)
     ImageView mTitlebarLogoIv;
@@ -44,8 +45,9 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     View mProgressView;
     @BindView(R.id.main_titlebar_search_container)
     RelativeLayout mSearchContainer;
-    @BindView(R.id.home_content_viewpager)
-    ViewPager mBannerViewPager;
+    @BindView(R.id.banner_main_cube)
+    BGABanner mCubeBanner;
+
 
     private Context mContext;
     private MainActivity mMainActivity;
@@ -71,25 +73,37 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initData();
+
+        initEvent();
     }
 
     /**
      * 初始化数据
      */
     private void initData() {
+        initBanner();
+    }
 
-        //TODO:
-        Log.d(TAG, "initData: ");
-        ArrayList<ImageView> mBannerList = new ArrayList<>();
+    private void initEvent() {
+        mCubeBanner.setOnItemClickListener(this);
+    }
+
+    /**
+     * 初始化轮播图数据
+     */
+    private void initBanner() {
+        //此部分是假数据,实际情况需要从网络获取图片//TODO:
+        List<View> mBannerList = new ArrayList<>();
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         for (int pic : Constans.bannerPics) {
-            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             ImageView imageView = new ImageView(getActivity());
             imageView.setLayoutParams(params);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setImageResource(pic);
             mBannerList.add(imageView);
         }
-        HomeBannerPagerAdapter homeBannerPagerAdapter = new HomeBannerPagerAdapter(mBannerList);
-        mBannerViewPager.setAdapter(homeBannerPagerAdapter);
+        mCubeBanner.setAdapter(this);
+        mCubeBanner.setData(mBannerList);
     }
 
     @Override
@@ -119,7 +133,11 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     }
 
 
-    @OnClick({R.id.main_titlebar_logo_iv, R.id.main_titlebar_camera_iv, R.id.main_titlebar_gouwu_tv, R.id.main_titlebar_search_container})
+    @OnClick(
+            {R.id.main_titlebar_logo_iv,
+                    R.id.main_titlebar_camera_iv,
+                    R.id.main_titlebar_gouwu_tv,
+                    R.id.main_titlebar_search_container})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_titlebar_logo_iv:
@@ -146,5 +164,47 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     @Override
     public void onAnimationRepeat(Animation animation) {
 
+    }
+
+    /**
+     * Banner中的item被点击时的回调
+     *
+     * @param banner   被点击的Banner
+     * @param view     被点击的View
+     * @param model    被点击view的数据
+     * @param position 被点击的postiton
+     */
+    @Override
+    public void onBannerItemClick(BGABanner banner, View view, Object model, int position) {
+        switch (position) {
+            case 0:
+                Log.d(TAG, "梦想家");
+                break;
+            case 1:
+                Log.d(TAG, "女神");
+                break;
+            case 2:
+                Log.d(TAG, "神经病");
+                break;
+        }
+    }
+
+    /**
+     * 该方法是BGABanner Adapter接口中的方法
+     *
+     * @param banner   当前Banner
+     * @param view     当前的容器对象
+     * @param model    数据
+     * @param position 当前是第几个
+     */
+    @Override
+    public void fillBannerItem(BGABanner banner, View view, Object model, int position) {
+        ArrayList<View> list = (ArrayList<View>) model;
+        if (list == null) return;
+        Glide.with(this)
+                .load(list.get(position))
+                .placeholder(R.mipmap.holder)
+                .error(R.mipmap.holder)
+                .into((ImageView) view);
     }
 }
