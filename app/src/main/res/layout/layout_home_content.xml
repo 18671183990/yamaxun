@@ -25,6 +25,153 @@
                 app:banner_transitionEffect="cube"/>
             <!--轮播图-->
 
+            <!--Kindle新品 海外购 国家馆 APP秒杀 芭比馆-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@color/color_white"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:src="@mipmap/kindle"
+                        app:civ_border_color="@color/color_white"
+                        app:civ_border_width="1dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="kindle"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:src="@mipmap/haiwai_gou"
+                        app:civ_border_color="@color/color_white"
+                        app:civ_border_width="1dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="海外购"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:src="@mipmap/guojia_guan"
+                        app:civ_border_color="@color/color_white"
+                        app:civ_border_width="1dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="国家馆"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:src="@mipmap/app_miaosha"
+                        app:civ_border_color="@color/color_white"
+                        app:civ_border_width="1dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="App秒杀"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:src="@mipmap/babi_guan"
+                        app:civ_border_color="@color/color_white"
+                        app:civ_border_width="1dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="芭比馆"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <!--Kindle新品 海外购 国家馆 APP秒杀 芭比馆-->
+
+            <!--Z秒杀-->
+            <include layout="@layout/layout_home_content_z_miaosha"/>
+            <!--Z秒杀-->
+
+            <!--镇店之宝 闪购全球-->
+            <include layout="@layout/layout_home_content_zhendian"/>
+            <!--镇店之宝 闪购全球-->
+
+            <!--与您浏览过的商品推荐-->
+            <include layout="@layout/layout_home_content_history"/>
+            <!--与您浏览过的商品推荐-->
+
+            <!--商品推广-->
+            <include layout="@layout/layout_home_content_tuiguang"/>
+            <!--商品推广-->
+
+            <!--更多商品-->
+            <include layout="@layout/layout_home_content_more_product"/>
+            <!--更多商品-->
 
         </LinearLayout>
     </ScrollView>

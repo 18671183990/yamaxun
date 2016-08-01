@@ -9,12 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.alan.yamaxun.R;
+import com.alan.yamaxun.bean.Shoe;
 import com.alan.yamaxun.config.Constans;
 import com.alan.yamaxun.ui.activity.MainActivity;
+import com.alan.yamaxun.ui.adapter.HomeGridAdapter;
+import com.alan.yamaxun.ui.view.MyGridView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -33,7 +37,7 @@ import cn.bingoogolapple.bgabanner.BGABanner;
  * time:    2016/7/30	23:57
  * desc:    TODO
  */
-public class HomeFragment extends AppBaseFragment implements Animation.AnimationListener, BGABanner.OnItemClickListener, BGABanner.Adapter {
+public class HomeFragment extends AppBaseFragment implements Animation.AnimationListener, BGABanner.OnItemClickListener, BGABanner.Adapter, AdapterView.OnItemClickListener {
 
     @BindView(R.id.main_titlebar_logo_iv)
     ImageView mTitlebarLogoIv;
@@ -47,6 +51,8 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     RelativeLayout mSearchContainer;
     @BindView(R.id.banner_main_cube)
     BGABanner mCubeBanner;
+    @BindView(R.id.home_content__more_product_gridview)
+    MyGridView mMoreGridView;
 
 
     private Context mContext;
@@ -82,6 +88,9 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
      */
     private void initData() {
         initBanner();
+
+
+        initMoreProduct();
     }
 
     private void initEvent() {
@@ -104,6 +113,20 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
         }
         mCubeBanner.setAdapter(this);
         mCubeBanner.setData(mBannerList);
+    }
+
+    /**
+     * 初始化更多商品数据
+     */
+    private void initMoreProduct() {
+        ArrayList<Shoe> list = new ArrayList<>();
+        for (int i = 0; i < Constans.shoesIcons.length; i++) {
+            Shoe shoe = new Shoe(Constans.shoesIcons[i], null, Constans.shoesDescs[i], Constans.shoesPrices[i]);
+            list.add(shoe);
+        }
+        HomeGridAdapter homeGridAdapter = new HomeGridAdapter(mContext, list);
+        mMoreGridView.setAdapter(homeGridAdapter);
+        mMoreGridView.setOnItemClickListener(this);
     }
 
     @Override
@@ -206,5 +229,10 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
                 .placeholder(R.mipmap.holder)
                 .error(R.mipmap.holder)
                 .into((ImageView) view);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
     }
 }
