@@ -6,47 +6,37 @@
 
     <include layout="@layout/layout_main_titlebar_with_search"/>
 
-    <com.alan.yamaxun.ui.view.DragScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <!--左侧列表部分-->
+        <ListView
+            android:id="@+id/category_fragment_drag_listview"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_white"
+            android:choiceMode="singleChoice"
+            >
+        </ListView>
+
+        <!--右侧内容部分-->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/category_left_content_tv"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="品类"/>
+                />
+        </FrameLayout>
+        <!--右侧内容部分-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="center"
-                android:text="品类"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="center"
-                android:text="品类"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="center"
-                android:text="品类"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="center"
-                android:text="品类"/>
-
-        </LinearLayout>
-    </com.alan.yamaxun.ui.view.DragScrollView>
+    </LinearLayout>
 
 
 </LinearLayout>

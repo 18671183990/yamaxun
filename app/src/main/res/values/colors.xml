@@ -10,6 +10,7 @@
 
     <color name="color_container_bg">#E6E6E6</color>
 
+    <color name="color_text_default">#7F7F7F</color>
     <color name="color_text_selected">#FF800F</color>
     <color name="color_text_red">#FF0000</color>
     <color name="color_text_black">#000000</color>
