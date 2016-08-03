@@ -2,8 +2,10 @@ package com.alan.yamaxun.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +14,21 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alan.yamaxun.R;
 import com.alan.yamaxun.bean.Shoe;
+import com.alan.yamaxun.bean.Time;
 import com.alan.yamaxun.config.Constans;
 import com.alan.yamaxun.ui.activity.MainActivity;
 import com.alan.yamaxun.ui.adapter.HomeGridAdapter;
 import com.alan.yamaxun.ui.view.MyGridView;
 import com.bumptech.glide.Glide;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -39,6 +46,12 @@ import cn.bingoogolapple.bgabanner.BGABanner;
  */
 public class HomeFragment extends AppBaseFragment implements Animation.AnimationListener, BGABanner.OnItemClickListener, BGABanner.Adapter, AdapterView.OnItemClickListener {
 
+    private static final long TEN_HOUR_SECOND = 1000 * 60 * 60 * 5;   //倒计时5个小时
+    private static final int MESSAGE_TYPE_UPDATE_TIME = 10010;
+    private static final int MESSAGE_TYPE_INIT_BANNER = 10011;
+    private static final int MESSAGE_TYPE_INIT_MORE_PRODUCT = 10012;
+    private static final String COUNT_DOWN_TIME = "10:00:00";
+
     @BindView(R.id.main_titlebar_logo_iv)
     ImageView mTitlebarLogoIv;
     @BindView(R.id.main_titlebar_camera_iv)
@@ -53,10 +66,46 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     BGABanner mCubeBanner;
     @BindView(R.id.home_content__more_product_gridview)
     MyGridView mMoreGridView;
+    @BindView(R.id.z_miaosha_hour_tv)
+    TextView mZMiaoShaHourTv;
+    @BindView(R.id.z_miaosha_minute_tv)
+    TextView mZMiaoShaMinuteTv;
+    @BindView(R.id.z_miaosha_second_tv)
+    TextView mZMiaoShaSecondTv;
+    @BindView(R.id.zhendian_hour_tv)
+    TextView mZhenDianHourTv;
+    @BindView(R.id.zhendian_minute_tv)
+    TextView mZhenDianMinuteTv;
+    @BindView(R.id.zhendian_second_tv)
+    TextView mZhenDianSecondTv;
 
 
     private Context mContext;
     private MainActivity mMainActivity;
+
+    private TimeHelper mTimeHelper = new TimeHelper() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MESSAGE_TYPE_UPDATE_TIME:
+                    Time time = (Time) msg.obj;
+                    mZMiaoShaHourTv.setText(time.getHour());
+                    mZMiaoShaMinuteTv.setText(time.getMinute());
+                    mZMiaoShaSecondTv.setText(time.getSecond());
+                    break;
+                case MESSAGE_TYPE_INIT_BANNER:
+                    List<View> list = (ArrayList<View>) msg.obj;
+                    mCubeBanner.setAdapter(HomeFragment.this);
+                    mCubeBanner.setData(list);
+                    break;
+                case MESSAGE_TYPE_INIT_MORE_PRODUCT:
+                    ArrayList<Shoe> shoeList = (ArrayList<Shoe>) msg.obj;
+                    HomeGridAdapter homeGridAdapter = new HomeGridAdapter(mContext, shoeList);
+                    mMoreGridView.setAdapter(homeGridAdapter);
+                    mMoreGridView.setOnItemClickListener(HomeFragment.this);
+            }
+        }
+    };
 
     public HomeFragment() {
     }
@@ -78,6 +127,7 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         initData();
 
         initEvent();
@@ -87,14 +137,11 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
      * 初始化数据
      */
     private void initData() {
-        initBanner();
+        initBanner();       //初始化Banner数据
 
+        initZMiaoSha();
 
-        initMoreProduct();
-    }
-
-    private void initEvent() {
-        mCubeBanner.setOnItemClickListener(this);
+        initMoreProduct();  //初始化更多数据
     }
 
     /**
@@ -102,37 +149,101 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
      */
     private void initBanner() {
         //此部分是假数据,实际情况需要从网络获取图片//TODO:
-        List<View> mBannerList = new ArrayList<>();
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        for (int pic : Constans.bannerPics) {
-            ImageView imageView = new ImageView(getActivity());
-            imageView.setLayoutParams(params);
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            imageView.setImageResource(pic);
-            mBannerList.add(imageView);
-        }
-        mCubeBanner.setAdapter(this);
-        mCubeBanner.setData(mBannerList);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<View> mBannerList = new ArrayList<>();
+                ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                for (int pic : Constans.bannerPics) {
+                    ImageView imageView = new ImageView(getActivity());
+                    imageView.setLayoutParams(params);
+                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                    imageView.setImageResource(pic);
+                    mBannerList.add(imageView);
+                }
+                Message msg = Message.obtain();
+                msg.what = MESSAGE_TYPE_INIT_BANNER;
+                msg.obj = mBannerList;
+                mTimeHelper.sendMessage(msg);
+            }
+        }).start();
+    }
+
+    /**
+     * 初始化Z秒杀数据
+     */
+    private void initZMiaoSha() {
+        initCurrentTime();      //初始化时间
+        initCountDownTime();    //初始化倒计时器
+    }
+
+    /**
+     * 初始化镇店之宝的倒计时器
+     */
+    private void initCountDownTime() {
+        CountDownTimer mCountDownTimer = new CountDownTimer(TEN_HOUR_SECOND, 1000) {
+            @Override
+            public void onTick(long l) {
+                long seconds = l / 1000;
+                long second = seconds % 60;
+                long minute = seconds / 60 % 60;
+                long hour = seconds / 60 / 60;
+                mZhenDianHourTv.setText(hour < 10 ? "0" + String.valueOf(hour) : String.valueOf(hour));
+                mZhenDianMinuteTv.setText(minute < 10 ? "0" + String.valueOf(minute) : String.valueOf(minute));
+                mZhenDianSecondTv.setText(second < 10 ? "0" + String.valueOf(second) : String.valueOf(second));
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
+        mCountDownTimer.start();
+    }
+
+    private void initCurrentTime() {
+        new Thread(mTimeHelper).start();    //开启子线程去更新时间
+        //Date date = new Date();
+        //long time = date.getTime();
+        //String s = date.toString();
+        //Log.d(TAG, "initCurrentTime: "+time);
+        //Log.d(TAG, "initCurrentTime: "+s);
     }
 
     /**
      * 初始化更多商品数据
      */
     private void initMoreProduct() {
-        ArrayList<Shoe> list = new ArrayList<>();
-        for (int i = 0; i < Constans.shoesIcons.length; i++) {
-            Shoe shoe = new Shoe(Constans.shoesIcons[i], null, Constans.shoesDescs[i], Constans.shoesPrices[i]);
-            list.add(shoe);
-        }
-        HomeGridAdapter homeGridAdapter = new HomeGridAdapter(mContext, list);
-        mMoreGridView.setAdapter(homeGridAdapter);
-        mMoreGridView.setOnItemClickListener(this);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<Shoe> list = new ArrayList<>();
+                for (int i = 0; i < Constans.shoesIcons.length; i++) {
+                    Shoe shoe = new Shoe(Constans.shoesIcons[i], null, Constans.shoesDescs[i], Constans.shoesPrices[i]);
+                    list.add(shoe);
+                }
+                Message msg = Message.obtain();
+                msg.what = MESSAGE_TYPE_INIT_MORE_PRODUCT;
+                msg.obj = list;
+                mTimeHelper.sendMessage(msg);
+            }
+        }).start();
+    }
+
+    private void initEvent() {
+        mCubeBanner.setOnItemClickListener(this);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        playLoadDataAnimation();
+//        playLoadDataAnimation();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 
     /**
@@ -201,13 +312,13 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     public void onBannerItemClick(BGABanner banner, View view, Object model, int position) {
         switch (position) {
             case 0:
-                Log.d(TAG, "梦想家");
+                Toast.makeText(mContext, "梦想家", Toast.LENGTH_SHORT).show();
                 break;
             case 1:
-                Log.d(TAG, "女神");
+                Toast.makeText(mContext, "女神", Toast.LENGTH_SHORT).show();
                 break;
             case 2:
-                Log.d(TAG, "神经病");
+                Toast.makeText(mContext, "神经病", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -235,4 +346,47 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mTimeHelper.stop();
+        mTimeHelper = null;
+    }
+
+    private class TimeHelper extends Handler implements Runnable {
+
+        private boolean start = true;
+
+        @Override
+        public void run() {
+            if (start) {
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+                String time = format.format(new Date());
+                String hour = time.substring(0, 2);
+                String minute = time.substring(3, 5);
+                String second = time.substring(6, 8);
+                Message msg = Message.obtain();
+                Time myTime = new Time();
+                myTime.setHour(hour);
+                myTime.setMinute(minute);
+                myTime.setSecond(second);
+                msg.what = MESSAGE_TYPE_UPDATE_TIME;
+                msg.obj = myTime;
+                sendMessage(msg);   //handler的方法
+                //BaseApplication.getmAppHandler().sendMessage(msg);
+                //SystemClock.sleep(1000);
+                postDelayed(this, 1000);
+            }
+        }
+
+        public void start() {
+            this.start = true;
+        }
+
+        public void stop() {
+            this.start = false;
+        }
+    }
+
 }

@@ -13,6 +13,7 @@ import android.content.Context;
  */
 public class BaseApplication extends Application {
     private static Context mContext;
+//    private static Handler mAppHandler = new Handler();
 
     @Override
     public void onCreate() {
@@ -33,5 +34,14 @@ public class BaseApplication extends Application {
      */
     private void initOhter() {
         //TODO:
+
     }
+
+//    public static Handler getmAppHandler() {
+////        if (mAppHandler == null) {
+////            mAppHandler = new Handler();
+////        }
+////        return mAppHandler;
+//    }
+
 }

@@ -40,6 +40,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="6dp"
+                        android:text="当前时间"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/z_miaosha_hour_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/amzn_switch_bg"
                         android:gravity="center"
                         android:text="11"/>
@@ -50,6 +58,7 @@
                         android:text=":"/>
 
                     <TextView
+                        android:id="@+id/z_miaosha_minute_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/amzn_switch_bg"
@@ -62,6 +71,7 @@
                         android:text=":"/>
 
                     <TextView
+                        android:id="@+id/z_miaosha_second_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/amzn_switch_bg"
