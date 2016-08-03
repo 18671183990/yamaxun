@@ -12,4 +12,5 @@
 
     <color name="color_text_selected">#FF800F</color>
     <color name="color_text_red">#FF0000</color>
+    <color name="color_text_black">#000000</color>
 </resources>
