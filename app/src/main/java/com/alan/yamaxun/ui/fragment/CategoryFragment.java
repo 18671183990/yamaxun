@@ -3,6 +3,9 @@ package com.alan.yamaxun.ui.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,14 +60,11 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
     @BindView(R.id.titlebar_withsearch)
     RelativeLayout titlebarWithsearch;
 
-    @BindView(R.id.category_left_content_tv)
-    TextView mRightContentTv;
-//    @BindView(R.id.category_left_item_tv)
-//    CheckedTextView mLeftItemTv;
-
     private Context mContext;
     private MainActivity mMainActivity;
-    private CategoryLeftAdapter mLeftAdapter;
+    private FragmentManager mFragmentManager;
+    private CategoryLeftAdapter mLeftAdapter;   //左侧列表部分Adapter
+    private ArrayList<Fragment> mFragmentList;  //Fragment列表集合
 
     public CategoryFragment() {
     }
@@ -72,6 +72,7 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
     public CategoryFragment(Context context) {
         this.mContext = context;
         this.mMainActivity = (MainActivity) mContext;
+        this.mFragmentManager = mMainActivity.getAppFragmentManager();
     }
 
     @Override
@@ -114,6 +115,7 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
         super.onActivityCreated(savedInstanceState);
 
         initLeft();
+        initAllFragment();
     }
 
     /**
@@ -131,6 +133,36 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
         mDragListView.setItemChecked(0, true);
     }
 
+    /**
+     * 初始化所有的Fragment
+     */
+    private void initAllFragment() {
+
+        mFragmentList = new ArrayList<>();
+        RightTuiJianFragment tuiJianFragment = new RightTuiJianFragment();
+        RightKindleFragment kindleFragment = new RightKindleFragment();
+        RightHaiWaiGouFragment haiWaiGouFragment = new RightHaiWaiGouFragment();
+        RightTuShuFragment tuShuFragment = new RightTuShuFragment();
+        RightPhoneFragment phoneFragment = new RightPhoneFragment();
+        RightComputerFragment computerFragment = new RightComputerFragment();
+        RightFuShiFragment fuShiFragment = new RightFuShiFragment();
+        RightMuYingFragment muYingFragment = new RightMuYingFragment();
+        RightSupportFragment supportFragment = new RightSupportFragment();
+        mFragmentList.add(tuiJianFragment);
+        mFragmentList.add(kindleFragment);
+        mFragmentList.add(haiWaiGouFragment);
+        mFragmentList.add(tuShuFragment);
+        mFragmentList.add(phoneFragment);
+        mFragmentList.add(computerFragment);
+        mFragmentList.add(fuShiFragment);
+        mFragmentList.add(muYingFragment);
+        mFragmentList.add(supportFragment);
+
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        transaction.add(R.id.category_right_container, mFragmentList.get(0));
+        transaction.commit();
+    }
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         int checkedPosition = mDragListView.getCheckedItemPosition();
@@ -139,7 +171,10 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
         mDragListView.smoothScrollToPositionFromTop(i, 0, 200);
         mDragListView.setItemChecked(i, true);
         //更改右侧界面内容TODO:
-        mRightContentTv.setText(Constans.categoryLeftData[i]);
+        FragmentManager fm = mMainActivity.getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.category_right_container, mFragmentList.get(i));
+        transaction.commit();
     }
 
 }

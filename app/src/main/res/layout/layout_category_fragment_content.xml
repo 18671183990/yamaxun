@@ -16,6 +16,7 @@
         <ListView
             android:id="@+id/category_fragment_drag_listview"
             android:layout_width="100dp"
+            android:overScrollMode="never"
             android:layout_height="match_parent"
             android:background="@color/color_white"
             android:choiceMode="singleChoice"
@@ -25,16 +26,22 @@
 
         <!--右侧内容部分-->
         <FrameLayout
+            android:id="@+id/category_right_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/category_left_content_tv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                />
+            android:layout_height="match_parent"
+            android:padding="5dp">
         </FrameLayout>
+
+        <!--第二种方法:使用ListView实现-->
+        <!--<ListView-->
+        <!--android:id="@+id/category_right_container_listview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:padding="6dp">-->
+        <!--</ListView>-->
+        <!--第二种方法:使用ListView实现-->
+
+
         <!--右侧内容部分-->
 
 

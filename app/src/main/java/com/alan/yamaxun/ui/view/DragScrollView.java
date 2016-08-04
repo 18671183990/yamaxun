@@ -14,7 +14,7 @@ import android.widget.ScrollView;
  * className:   DragScrollView
  * author:  Alan
  * time:    2016/8/1	19:55
- * desc:    TODO
+ * desc:    带回弹效果的ScrollView
  */
 public class DragScrollView extends ScrollView {
 
