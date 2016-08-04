@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<CheckedTextView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/category_left_item_tv"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/category_left_item_tv"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/custome_bg_selector"
-        android:gravity="center"
-        android:textColor="@color/category_left_radiobtn_text_selector"/>
-</RelativeLayout>
+    android:layout_height="50dp"
+    android:background="@drawable/category_left_item_bg_selector"
+    android:paddingBottom="15dp"
+    android:paddingLeft="22dp"
+    android:paddingTop="15dp"
+    android:textColor="@color/category_left_radiobtn_text_selector"/>
