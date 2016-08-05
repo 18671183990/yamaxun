@@ -30,7 +30,7 @@ public class RightComputerFragment extends AppBaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = View.inflate(getContext(), R.layout.layout_category_fragment_right_computer, null);
+        View view = View.inflate(getContext(), R.layout.layout_category_fragment_right_kindle, null);
         return view;
     }
 }

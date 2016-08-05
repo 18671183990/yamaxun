@@ -30,7 +30,7 @@ public class RightMuYingFragment extends AppBaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = View.inflate(getContext(), R.layout.layout_category_fragment_right_muying, null);
+        View view = View.inflate(getContext(), R.layout.layout_category_fragment_right_tuijian, null);
         return view;
     }
 }

@@ -2,11 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/color_gray"
               android:orientation="vertical">
 
-    <TextView
+    <com.alan.yamaxun.ui.view.DragScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Kindle"/>
+        android:fadingEdge="none"
+        android:overScrollMode="never">
+
+        <include layout="@layout/layout_category_fragment_right_kindle_content"/>
+
+    </com.alan.yamaxun.ui.view.DragScrollView>
 </LinearLayout>

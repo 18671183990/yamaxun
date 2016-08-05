@@ -89,7 +89,7 @@ public class RightTuiJianFragment extends AppBaseFragment {
         public View getView(int i, View view, ViewGroup viewGroup) {
             ViewHolder holder;
             if (view == null) {
-                view = View.inflate(getContext(), R.layout.layout_right_tuijian_lv_item, null);
+                view = View.inflate(getContext(), R.layout.layout_category_fragment_right_tuijian_listview_item, null);
                 holder = new ViewHolder();
                 holder.title = (TextView) view.findViewById(R.id.right_tuijian_item_tv);
                 view.setTag(holder);
