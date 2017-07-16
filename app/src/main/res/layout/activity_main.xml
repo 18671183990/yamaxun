@@ -35,8 +35,7 @@
             android:gravity="center"
             android:text="首页"
             android:textColor="@color/radiobar_text_selector"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/radio_bar_category"
@@ -48,8 +47,7 @@
             android:gravity="center"
             android:text="品类"
             android:textColor="@color/radiobar_text_selector"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/radio_bar_discover"
@@ -61,8 +59,7 @@
             android:gravity="center"
             android:text="发现"
             android:textColor="@color/radiobar_text_selector"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/radio_bar_my"
@@ -74,8 +71,7 @@
             android:gravity="center"
             android:text="我的"
             android:textColor="@color/radiobar_text_selector"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
     </RadioGroup>
     <!--底部导航栏部分-->
 

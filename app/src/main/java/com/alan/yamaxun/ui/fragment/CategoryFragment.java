@@ -23,6 +23,7 @@ import com.alan.yamaxun.ui.activity.MainActivity;
 import com.alan.yamaxun.ui.adapter.CategoryLeftAdapter;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -173,7 +174,9 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
         //更改右侧界面内容TODO:
         FragmentManager fm = mMainActivity.getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.category_right_container, mFragmentList.get(i));
+        //因为是手动
+        int a = new Random().nextInt(8);
+        transaction.replace(R.id.category_right_container, mFragmentList.get(i>7?a:i));
         transaction.commit();
     }
 

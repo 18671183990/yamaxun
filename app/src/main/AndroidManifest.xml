@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.alan.yamaxun">
+    package="com.alan.yamaxun"
+    android:versionCode="2"
+    android:versionName="1.0.0.1">
 
     <application
         android:name=".BaseApplication"
@@ -13,8 +15,8 @@
             android:name=".ui.activity.MainActivity"
             android:label="亚马逊">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>

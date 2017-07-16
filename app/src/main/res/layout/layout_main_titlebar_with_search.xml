@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/titlebar_withsearch"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/main_titlebar_bg">
+    android:id="@+id/titlebar_withsearch"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/main_titlebar_bg">
 
     <LinearLayout
         android:id="@+id/main_titlebar_linearlayout"
@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/custome_bg_selector"
             android:padding="6dp"
-            android:src="@mipmap/action_bar_amazon_logo_small"/>
+            android:src="@mipmap/action_bar_amazon_logo_small" />
 
         <!--中间搜索框部分-->
         <RelativeLayout
@@ -27,20 +27,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/titlebar_search_bg_selector"
-            android:padding="4dp"
-            >
+            android:padding="4dp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/color_white"
-                >
+                android:background="@color/color_white">
 
                 <ImageView
                     android:id="@+id/main_titlebar_search_iv"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/titleba_wihtsearch_search_iv_selector"/>
+                    android:src="@drawable/titleba_wihtsearch_search_iv_selector" />
 
                 <TextView
                     android:id="@+id/main_titlebar_search_tv"
@@ -48,7 +46,7 @@
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@id/main_titlebar_search_iv"
                     android:gravity="center"
-                    android:text="@string/amazon.cn"/>
+                    android:text="@string/amazon.cn" />
 
                 <ImageView
                     android:id="@+id/main_titlebar_camera_iv"
@@ -56,7 +54,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/custome_bg_selector"
-                    android:src="@mipmap/search_bar_cam"/>
+                    android:src="@mipmap/search_bar_cam" />
 
             </RelativeLayout>
 
@@ -68,15 +66,14 @@
         <!--购物车部分-->
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/main_titlebar_gouwu_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custome_bg_selector"
-                android:src="@drawable/titlebar_gouwuche_iv_selector"/>
+                android:src="@drawable/titlebar_gouwuche_iv_selector" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,7 +81,7 @@
                 android:layout_marginLeft="19dp"
                 android:layout_marginTop="4dp"
                 android:text="0"
-                android:textColor="@color/color_text_selected"/>
+                android:textColor="@color/color_text_selected" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -94,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_below="@id/main_titlebar_linearlayout"
-        android:background="@color/color_gray"/>
+        android:background="@color/color_gray" />
 
     <!--ProgressView-->
     <View
@@ -103,7 +100,7 @@
         android:layout_height="3dp"
         android:layout_below="@id/main_titlebar_divider_view"
         android:background="@drawable/titlebar_progress_bg"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 
 </RelativeLayout>
