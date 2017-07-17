@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alan.yamaxun.R;
@@ -32,8 +31,8 @@ public class DiscoverFragment extends AppBaseFragment {
     ImageView mTitlebarGouwuIv;
     @BindView(R.id.main_titlebar_nosearch_gouwu_tv)
     TextView mTitlebarGouwuTv;
-    @BindView(R.id.main_titlebar_nosearch_gouwuche_container)
-    RelativeLayout mTitlebarGouwucheContainer;
+    //    @BindView(R.id.main_titlebar_nosearch_gouwuche_container)
+//    RelativeLayout mTitlebarGouwucheContainer;
     @BindView(R.id.main_titlebar_nosearch_search_iv)
     ImageView mTitlebarSearchIv;
     @BindView(R.id.main_titlebar_progress_view)
@@ -68,23 +67,23 @@ public class DiscoverFragment extends AppBaseFragment {
         return rootView;
     }
 
-    @OnClick({R.id.main_titlebar_nosearch_logo_iv, R.id.main_titlebar_nosearch_gouwu_iv, R.id.main_titlebar_nosearch_gouwu_tv, R.id.main_titlebar_nosearch_gouwuche_container, R.id.main_titlebar_nosearch_search_iv, R.id.main_titlebar_progress_view})
+    @OnClick({R.id.main_titlebar_nosearch_logo_iv,
+            R.id.main_titlebar_nosearch_gouwu_tv,
+            R.id.main_titlebar_nosearch_gouwuche_container,
+            R.id.main_titlebar_nosearch_search_iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_titlebar_nosearch_logo_iv:
                 mMainActivity.goToHome();
                 break;
-            case R.id.main_titlebar_nosearch_gouwu_iv:
-                break;
-            case R.id.main_titlebar_nosearch_gouwu_tv:
-                break;
             case R.id.main_titlebar_nosearch_gouwuche_container:
+                mMainActivity.goGouWuCheActivity();
                 break;
             case R.id.main_titlebar_nosearch_search_iv:
-                break;
-            case R.id.main_titlebar_progress_view:
+                mMainActivity.goSearchActivity();
                 break;
         }
     }
+
 
 }

@@ -65,6 +65,7 @@
 
         <!--购物车部分-->
         <RelativeLayout
+            android:id="@+id/main_titlebar_gouwuche_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 

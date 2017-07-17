@@ -66,4 +66,7 @@ public interface Constans {
             "Z实惠"};
 
     String[] fenlei = {"热门分类", "手机", "腕表", "笔记本电脑", "白酒", "平板电视", "儿童文学", "空调", "科普百科", "少儿英语", "礼品卡"};
+
+    //Z秒杀鞋子图片ID
+    int[] zMiaoSha = {R.mipmap.xiezi3, R.mipmap.xiezi9, R.mipmap.xiezi10, R.mipmap.xiezi12};
 }

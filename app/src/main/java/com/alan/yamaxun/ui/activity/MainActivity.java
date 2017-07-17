@@ -1,5 +1,6 @@
 package com.alan.yamaxun.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -147,4 +148,36 @@ public class MainActivity extends AppBaseActivity {
                 break;
         }
     }
+
+
+    /**
+     * 进入搜索页面
+     */
+    public void goSearchActivity() {
+        //TODO:进入搜索页面
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * 进入扫一扫页面
+     */
+    public void goScanActivity() {
+        startActivity(new Intent(this, ScanActivity.class));
+    }
+
+    /**
+     * 进入购物车页面
+     */
+    public void goGouWuCheActivity() {
+        startActivity(new Intent(this, GouWuCheActivity.class));
+    }
+
+    public void goProductActivity(){
+        startActivity(new Intent(this,ProductActivity.class));
+    }
 }
+
+
+
+

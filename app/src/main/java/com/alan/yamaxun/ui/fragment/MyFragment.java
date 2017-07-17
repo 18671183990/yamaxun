@@ -74,17 +74,19 @@ public class MyFragment extends AppBaseFragment {
         return rootView;
     }
 
-    @OnClick({R.id.main_titlebar_nosearch_logo_iv, R.id.main_titlebar_nosearch_gouwu_iv, R.id.main_titlebar_nosearch_gouwuche_container, R.id.main_titlebar_nosearch_search_iv, R.id.my_fragment_content_zhanghu_container, R.id.my_fragment_content_guojia_container})
+    @OnClick({R.id.main_titlebar_nosearch_logo_iv,
+            R.id.main_titlebar_nosearch_gouwuche_container,
+            R.id.main_titlebar_nosearch_search_iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_titlebar_nosearch_logo_iv:
                 mMainActivity.goToHome();
                 break;
-            case R.id.main_titlebar_nosearch_gouwu_iv:
-                break;
             case R.id.main_titlebar_nosearch_gouwuche_container:
+                mMainActivity.goGouWuCheActivity();
                 break;
             case R.id.main_titlebar_nosearch_search_iv:
+                mMainActivity.goSearchActivity();
                 break;
         }
     }

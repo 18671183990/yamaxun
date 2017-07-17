@@ -94,19 +94,22 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
         return rootView;
     }
 
-    @OnClick({R.id.main_titlebar_logo_iv, R.id.main_titlebar_camera_iv, R.id.main_titlebar_search_container, R.id.main_titlebar_gouwu_tv})
+    @OnClick({R.id.main_titlebar_logo_iv, R.id.main_titlebar_camera_iv, R.id.main_titlebar_search_container, R.id.main_titlebar_gouwuche_container})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_titlebar_logo_iv:
                 mMainActivity.goToHome();
                 break;
-            case R.id.main_titlebar_search_iv:
-                break;
             case R.id.main_titlebar_camera_iv:
+                mMainActivity.goScanActivity();
                 break;
             case R.id.main_titlebar_search_container:
+                //HomeFragment里已经有去搜索界面的方法，本想拿到HomeFragment的实例，但之前没有为Fragment设置Id所以方法暂时不可行，只能再写一次
+                //将方法写在MainActivity中，Fragment可以拿到MainActivity的实例，所以四个Fragment都可以调用那几个方法
+                mMainActivity.goSearchActivity();
                 break;
-            case R.id.main_titlebar_gouwu_tv:
+            case R.id.main_titlebar_gouwuche_container:
+                mMainActivity.goGouWuCheActivity();
                 break;
         }
     }
@@ -176,7 +179,7 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
         FragmentTransaction transaction = fm.beginTransaction();
         //因为是手动
         int a = new Random().nextInt(8);
-        transaction.replace(R.id.category_right_container, mFragmentList.get(i>7?a:i));
+        transaction.replace(R.id.category_right_container, mFragmentList.get(i > 7 ? a : i));
         transaction.commit();
     }
 

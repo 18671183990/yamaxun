@@ -6,6 +6,9 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,7 @@ import com.alan.yamaxun.bean.Time;
 import com.alan.yamaxun.config.Constans;
 import com.alan.yamaxun.ui.activity.MainActivity;
 import com.alan.yamaxun.ui.adapter.HomeGridAdapter;
+import com.alan.yamaxun.ui.adapter.ZmiaoShaAdapter;
 import com.alan.yamaxun.ui.view.MyGridView;
 import com.bumptech.glide.Glide;
 
@@ -44,13 +48,17 @@ import cn.bingoogolapple.bgabanner.BGABanner;
  * time:    2016/7/30	23:57
  * desc:    TODO
  */
-public class HomeFragment extends AppBaseFragment implements Animation.AnimationListener, BGABanner.OnItemClickListener, BGABanner.Adapter, AdapterView.OnItemClickListener {
+public class HomeFragment extends AppBaseFragment
+        implements Animation.AnimationListener,
+        BGABanner.OnItemClickListener,
+        BGABanner.Adapter,
+        AdapterView.OnItemClickListener,
+        ZmiaoShaAdapter.OnItemClickListener {
 
     private static final long TEN_HOUR_SECOND = 1000 * 60 * 60 * 5;   //倒计时5个小时
     private static final int MESSAGE_TYPE_UPDATE_TIME = 10010;
     private static final int MESSAGE_TYPE_INIT_BANNER = 10011;
     private static final int MESSAGE_TYPE_INIT_MORE_PRODUCT = 10012;
-    private static final String COUNT_DOWN_TIME = "10:00:00";
 
     @BindView(R.id.main_titlebar_logo_iv)
     ImageView mTitlebarLogoIv;
@@ -79,10 +87,26 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     @BindView(R.id.zhendian_second_tv)
     TextView mZhenDianSecondTv;
 
+    @BindView(R.id.kindle)
+    View mKindle;
+    @BindView(R.id.haiwaigou)
+    View mHaiwaigou;
+    @BindView(R.id.guojiaguan)
+    View mGuojiaguan;
+    @BindView(R.id.app_miaosha)
+    View mAppMiaoSha;
+    @BindView(R.id.babiguan)
+    View mBaBiGuan;
+    @BindView(R.id.z_miaosha_rv)
+    RecyclerView mZMiaoShaRv;
+
 
     private Context mContext;
     private MainActivity mMainActivity;
 
+    /**
+     *
+     */
     private TimeHelper mTimeHelper = new TimeHelper() {
         @Override
         public void handleMessage(Message msg) {
@@ -109,7 +133,6 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
 
     public HomeFragment() {
     }
-
     public HomeFragment(Context context) {
         this.mContext = context;
         this.mMainActivity = (MainActivity) mContext;
@@ -175,6 +198,18 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     private void initZMiaoSha() {
         initCurrentTime();      //初始化时间
         initCountDownTime();    //初始化倒计时器
+        //初始化Z秒杀数据,使用RecyclerView
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, OrientationHelper.HORIZONTAL);
+        mZMiaoShaRv.setLayoutManager(staggeredGridLayoutManager);
+
+        //假数据
+        ArrayList<Integer> mZList = new ArrayList<>();
+        for (int i = 0; i < Constans.zMiaoSha.length; i++) {
+            mZList.add(Constans.zMiaoSha[i]);
+        }
+        ZmiaoShaAdapter mZmiaoShaAdapter = new ZmiaoShaAdapter(this, mZList);
+        mZmiaoShaAdapter.setmOnItemClickListener(this);
+        mZMiaoShaRv.setAdapter(mZmiaoShaAdapter);
     }
 
     /**
@@ -267,24 +302,59 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     }
 
 
+    /**
+     * ButterKnife中绑定的方法
+     * @param view
+     */
     @OnClick(
             {R.id.main_titlebar_logo_iv,
                     R.id.main_titlebar_camera_iv,
-                    R.id.main_titlebar_gouwu_tv,
-                    R.id.main_titlebar_search_container})
+                    R.id.main_titlebar_search_container,
+                    R.id.main_titlebar_gouwuche_container,
+                    R.id.kindle,
+                    R.id.haiwaigou,
+                    R.id.guojiaguan,
+                    R.id.app_miaosha,
+                    R.id.babiguan})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_titlebar_logo_iv:
                 break;
             case R.id.main_titlebar_camera_iv:
+                mMainActivity.goScanActivity();
                 break;
-            case R.id.main_titlebar_gouwu_tv:
+            case R.id.main_titlebar_gouwuche_container:
+                //进入购物车页面
+                mMainActivity.goGouWuCheActivity();
                 break;
             case R.id.main_titlebar_search_container:
+                //进入搜索页面：SearchActivity
+//                goSearchActivity();
+                mMainActivity.goSearchActivity();
+                break;
+            case R.id.kindle:
+                mMainActivity.goProductActivity();
+                break;
+            case R.id.haiwaigou:
+                mMainActivity.goProductActivity();
+                break;
+            case R.id.guojiaguan:
+                mMainActivity.goProductActivity();
+                break;
+            case R.id.app_miaosha:
+                mMainActivity.goProductActivity();
+                break;
+            case R.id.babiguan:
+                mMainActivity.goProductActivity();
                 break;
         }
     }
 
+
+    /**
+     * 以下三个方法是AnimationListener的实现
+     * @param animation
+     */
     @Override
     public void onAnimationStart(Animation animation) {
         mProgressView.setVisibility(View.VISIBLE);
@@ -312,13 +382,13 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
     public void onBannerItemClick(BGABanner banner, View view, Object model, int position) {
         switch (position) {
             case 0:
-                Toast.makeText(mContext, "梦想家", Toast.LENGTH_SHORT).show();
+                mMainActivity.goProductActivity();
                 break;
             case 1:
-                Toast.makeText(mContext, "女神", Toast.LENGTH_SHORT).show();
+                mMainActivity.goProductActivity();
                 break;
             case 2:
-                Toast.makeText(mContext, "神经病", Toast.LENGTH_SHORT).show();
+                mMainActivity.goProductActivity();
                 break;
         }
     }
@@ -342,9 +412,15 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
                 .into((ImageView) view);
     }
 
+    /**
+     * @param adapterView GradView的AdapterView
+     * @param view        当前点击的view
+     * @param i
+     * @param l
+     */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        Toast.makeText(mContext, "第" + i + "个view被点击了", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -354,6 +430,19 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
         mTimeHelper = null;
     }
 
+    /**
+     * HomeFragment中RevyclerView的OnitemClickListener的回调方法
+     * @param view
+     * @param position
+     */
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(mContext, "第" + position + "个view被点击了", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 继承了Handler的Runnable
+     */
     private class TimeHelper extends Handler implements Runnable {
 
         private boolean start = true;
@@ -374,8 +463,6 @@ public class HomeFragment extends AppBaseFragment implements Animation.Animation
                 msg.what = MESSAGE_TYPE_UPDATE_TIME;
                 msg.obj = myTime;
                 sendMessage(msg);   //handler的方法
-                //BaseApplication.getmAppHandler().sendMessage(msg);
-                //SystemClock.sleep(1000);
                 postDelayed(this, 1000);
             }
         }
