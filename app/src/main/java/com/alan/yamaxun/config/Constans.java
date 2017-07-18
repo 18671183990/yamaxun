@@ -47,26 +47,18 @@ public interface Constans {
             "美容化妆",
             "数码影音",
             "钟表",
-            "玩具",
-            "摄影摄像",
-            "汽车用品",
-            "装修建材",
-            "珠宝首饰",
-            "厨具",
-            "音乐",
-            "大家电",
-            "办公用品",
-            "电视音响",
-            "乐器",
-            "游戏娱乐",
-            "宠物用品",
-            "音像",
-            "软件",
-            "礼品卡",
-            "Z实惠"};
+            "玩具"};
 
     String[] fenlei = {"热门分类", "手机", "腕表", "笔记本电脑", "白酒", "平板电视", "儿童文学", "空调", "科普百科", "少儿英语", "礼品卡"};
 
     //Z秒杀鞋子图片ID
     int[] zMiaoSha = {R.mipmap.xiezi3, R.mipmap.xiezi9, R.mipmap.xiezi10, R.mipmap.xiezi12};
+
+    //推荐页面的第一个GradView的数据
+    int[] gradImageData1 = {R.mipmap.xiezi3, R.mipmap.xiezi4};
+    String[] gradDescData1 = {"款款惊爆价", "超低惊喜价"};
+
+    //推荐页面的第二个GradView的数据
+    int[] gradImageData2 = {R.mipmap.xiezi5, R.mipmap.xiezi9, R.mipmap.xiezi11, R.mipmap.xiezi3, R.mipmap.xiezi10, R.mipmap.xiezi12};
+    String[] gradDescData2 = {"平底单鞋", "时尚高跟", "复古风格", "夏季凉鞋", "单鞋", "增高鞋"};
 }

@@ -1,102 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/color_white">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color_gray"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="@color/color_white"
-                >
-
-                <ImageView
-                    android:id="@+id/right_tuijian_miaosha_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@mipmap/xiezi3"/>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="6dp"
-                    android:src="@mipmap/rs_carrot_right"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_below="@id/right_tuijian_miaosha_tv"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:text="款款惊爆价"
-                    android:textSize="12sp"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:background="@color/color_white"
-                >
-
-                <ImageView
-                    android:id="@+id/right_tuijian_miaosha_tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@mipmap/xiezi4"/>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="6dp"
-                    android:src="@mipmap/rs_carrot_right"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_below="@id/right_tuijian_miaosha_tv2"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:text="超低惊喜价"
-                    android:textSize="12sp"/>
-            </RelativeLayout>
-
-        </LinearLayout>
-    </RelativeLayout>
-    <!--秒杀部分-->
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:text="欢迎来到推荐频道>>"
+        android:textColor="#F88017" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:id="@+id/tuijian_grad1_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white">
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="16dp"
         android:gravity="center_vertical"
-        android:text="推荐分类"/>
+        android:text="推荐分类" />
 
     <!--推荐分类-->
     <LinearLayout
@@ -116,13 +51,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="POLO衫"/>
+                android:text="POLO衫" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:padding="6dp"
-                android:src="@mipmap/xiezi5"/>
+                android:src="@mipmap/xiezi5" />
         </LinearLayout>
 
         <LinearLayout
@@ -137,13 +72,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="POLO衫"/>
+                android:text="POLO衫" />
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:padding="6dp"
-                android:src="@mipmap/xiezi9"/>
+                android:src="@mipmap/xiezi9" />
         </LinearLayout>
 
         <LinearLayout
@@ -158,13 +94,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="POLO衫"/>
+                android:text="POLO衫" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:padding="6dp"
-                android:src="@mipmap/xiezi11"/>
+                android:src="@mipmap/xiezi11" />
         </LinearLayout>
     </LinearLayout>
 
@@ -185,13 +121,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="POLO衫"/>
+                android:text="POLO衫" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:padding="6dp"
-                android:src="@mipmap/xiezi11"/>
+                android:src="@mipmap/xiezi11" />
         </LinearLayout>
 
         <LinearLayout
@@ -206,13 +142,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="POLO衫"/>
+                android:text="POLO衫" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:padding="6dp"
-                android:src="@mipmap/xiezi10"/>
+                android:src="@mipmap/xiezi10" />
         </LinearLayout>
 
         <LinearLayout
@@ -227,13 +163,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="POLO衫"/>
+                android:text="POLO衫" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:padding="6dp"
-                android:src="@mipmap/xiezi12"/>
+                android:src="@mipmap/xiezi12" />
         </LinearLayout>
     </LinearLayout>
     <!--推荐分类-->
@@ -246,8 +182,7 @@
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
-        android:background="@color/color_white">
-    </com.alan.yamaxun.ui.view.MyListView>
+        android:background="@color/color_white"></com.alan.yamaxun.ui.view.MyListView>
 
 </LinearLayout>
 

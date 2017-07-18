@@ -2,6 +2,8 @@ package com.alan.yamaxun.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +23,7 @@ import com.alan.yamaxun.R;
 import com.alan.yamaxun.config.Constans;
 import com.alan.yamaxun.ui.activity.MainActivity;
 import com.alan.yamaxun.ui.adapter.CategoryLeftAdapter;
+import com.alan.yamaxun.ui.view.DragListView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,6 +41,9 @@ import butterknife.OnClick;
  * desc:    TODO
  */
 public class CategoryFragment extends AppBaseFragment implements AdapterView.OnItemClickListener {
+
+    public static final int UPDATE_SECESS = 10001;
+
     @BindView(R.id.main_titlebar_logo_iv)
     ImageView mTitlebarLogoIv;
     @BindView(R.id.main_titlebar_search_iv)
@@ -51,7 +57,7 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
     @BindView(R.id.main_titlebar_progress_view)
     View mTitlebarProgressView;
     @BindView(R.id.category_fragment_drag_listview)
-    ListView mDragListView;
+    DragListView mDragListView;
     @BindView(R.id.main_titlebar_search_tv)
     TextView mainTitlebarSearchTv;
     @BindView(R.id.main_titlebar_linearlayout)
@@ -61,11 +67,29 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
     @BindView(R.id.titlebar_withsearch)
     RelativeLayout titlebarWithsearch;
 
+    @BindView(R.id.category_right_container)
+    View mmCategoryRightContainerView;
+
+    @BindView(R.id.category_right_container_loading)
+    View mCategoryRightContainerLoadingView;
+
     private Context mContext;
     private MainActivity mMainActivity;
     private FragmentManager mFragmentManager;
     private CategoryLeftAdapter mLeftAdapter;   //左侧列表部分Adapter
     private ArrayList<Fragment> mFragmentList;  //Fragment列表集合
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case UPDATE_SECESS:
+                    mmCategoryRightContainerView.setVisibility(View.VISIBLE);
+                    mCategoryRightContainerLoadingView.setVisibility(View.GONE);
+                    break;
+            }
+        }
+    };
 
     public CategoryFragment() {
     }
@@ -161,7 +185,9 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
         mFragmentList.add(fuShiFragment);
         mFragmentList.add(muYingFragment);
         mFragmentList.add(supportFragment);
-
+        if (mFragmentManager == null) {
+            mFragmentManager = mMainActivity.getAppFragmentManager();
+        }
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         transaction.add(R.id.category_right_container, mFragmentList.get(0));
         transaction.commit();
@@ -171,16 +197,30 @@ public class CategoryFragment extends AppBaseFragment implements AdapterView.OnI
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         int checkedPosition = mDragListView.getCheckedItemPosition();
         int checkedItemCount = mDragListView.getCheckedItemCount();
-        Log.d(TAG, "checkedPosition: " + checkedPosition + "----checkedItemCount: " + checkedItemCount);
         mDragListView.smoothScrollToPositionFromTop(i, 0, 200);
         mDragListView.setItemChecked(i, true);
         //更改右侧界面内容TODO:
+        mmCategoryRightContainerView.setVisibility(View.GONE);
+        mCategoryRightContainerLoadingView.setVisibility(View.VISIBLE);
         FragmentManager fm = mMainActivity.getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        //因为是手动
+        //
         int a = new Random().nextInt(8);
         transaction.replace(R.id.category_right_container, mFragmentList.get(i > 7 ? a : i));
         transaction.commit();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.currentThread().sleep(700);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Message msg = Message.obtain();
+                msg.what = UPDATE_SECESS;
+                handler.sendMessage(msg);
+            }
+        }).start();
     }
 
 }

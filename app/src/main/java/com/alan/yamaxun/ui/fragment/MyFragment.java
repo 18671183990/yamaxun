@@ -43,6 +43,8 @@ public class MyFragment extends AppBaseFragment {
     RelativeLayout mZhangHuContainer;
     @BindView(R.id.my_fragment_content_guojia_container)
     RelativeLayout mGuoJiaContainer;
+    @BindView(R.id.my_order_tv)
+    TextView mMyOrderTv;
 
     private Context mContext;
     private MainActivity mMainActivity;
@@ -76,7 +78,18 @@ public class MyFragment extends AppBaseFragment {
 
     @OnClick({R.id.main_titlebar_nosearch_logo_iv,
             R.id.main_titlebar_nosearch_gouwuche_container,
-            R.id.main_titlebar_nosearch_search_iv})
+            R.id.main_titlebar_nosearch_search_iv,
+            R.id.my_order_tv, R.id.pinglun_tv,
+            R.id.yue_tv,
+            R.id.youhuijuan_tv,
+            R.id.xinyuandan_tv,
+            R.id.zuijin_tv,
+            R.id.tuijian_tv,
+            R.id.shanghupingjia_tv,
+            R.id.fuwu_tv,
+            R.id.fankui_tv,
+            R.id.my_fragment_content_zhanghu_container,
+            R.id.my_fragment_content_guojia_container})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_titlebar_nosearch_logo_iv:

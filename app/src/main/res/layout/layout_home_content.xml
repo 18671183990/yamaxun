@@ -166,6 +166,10 @@
             <include layout="@layout/layout_home_content_zhendian"/>
             <!--镇店之宝 闪购全球-->
 
+            <!--更多商品-->
+            <include layout="@layout/layout_home_content_more_product"/>
+            <!--更多商品-->
+
             <!--与您浏览过的商品推荐-->
             <include layout="@layout/layout_home_content_history"/>
             <!--与您浏览过的商品推荐-->
@@ -174,9 +178,7 @@
             <include layout="@layout/layout_home_content_tuiguang"/>
             <!--商品推广-->
 
-            <!--更多商品-->
-            <include layout="@layout/layout_home_content_more_product"/>
-            <!--更多商品-->
+
 
         </LinearLayout>
     </ScrollView>

@@ -420,7 +420,7 @@ public class HomeFragment extends AppBaseFragment
      */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(mContext, "第" + i + "个view被点击了", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(mContext, "第" + i + "个view被点击了", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -437,7 +437,7 @@ public class HomeFragment extends AppBaseFragment
      */
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(mContext, "第" + position + "个view被点击了", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(mContext, "第" + position + "个view被点击了", Toast.LENGTH_SHORT).show();
     }
 
     /**

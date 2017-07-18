@@ -154,7 +154,6 @@ public class MainActivity extends AppBaseActivity {
      * 进入搜索页面
      */
     public void goSearchActivity() {
-        //TODO:进入搜索页面
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }

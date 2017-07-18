@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/color_gray"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_gray"
+    android:orientation="vertical">
 
-    <include layout="@layout/layout_main_titlebar_no_search"/>
+    <include layout="@layout/layout_main_titlebar_no_search" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
                 android:text="您好,Alan"
-                android:textColor="@color/color_text_selected"/>
+                android:textColor="@color/color_text_selected" />
 
             <!--订单-->
             <RelativeLayout
@@ -40,13 +40,13 @@
                     android:paddingLeft="16dp"
                     android:text="订单"
                     android:textColor="@color/color_text_black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@id/my_fragment_order_title_tv"
-                    android:background="@color/color_gray"/>
+                    android:background="@color/color_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -55,29 +55,33 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/my_order_tv"
                         android:layout_width="0dp"
                         android:layout_height="45dp"
                         android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
                         android:drawableLeft="@mipmap/myorder"
                         android:gravity="center"
                         android:paddingLeft="45dp"
                         android:paddingRight="45dp"
-                        android:text="我的订单"/>
+                        android:text="我的订单" />
 
                     <View
                         android:layout_width="0.5dp"
                         android:layout_height="match_parent"
-                        android:background="@color/color_gray"/>
+                        android:background="@color/color_gray" />
 
                     <TextView
+                        android:id="@+id/pinglun_tv"
                         android:layout_width="0dp"
                         android:layout_height="45dp"
                         android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
                         android:drawableLeft="@mipmap/pinglun"
                         android:gravity="center"
                         android:paddingLeft="35dp"
                         android:paddingRight="16dp"
-                        android:text="评论已购商品"/>
+                        android:text="评论已购商品" />
                 </LinearLayout>
             </RelativeLayout>
             <!--订单-->
@@ -98,7 +102,7 @@
                     android:gravity="center_vertical"
                     android:text="我的钱包"
                     android:textColor="@color/color_text_black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -108,13 +112,13 @@
                     android:drawableRight="@mipmap/rs_carrot_right"
                     android:gravity="center_vertical"
                     android:text="退款记录 管理支付方式"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@id/my_fragment_order_my_order_tv"
-                    android:background="@color/color_gray"/>
+                    android:background="@color/color_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -123,23 +127,27 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/yue_tv"
                         android:layout_width="0dp"
                         android:layout_height="45dp"
                         android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
                         android:gravity="center"
-                        android:text="账户余额及充值"/>
+                        android:text="账户余额及充值" />
 
                     <View
                         android:layout_width="0.5dp"
                         android:layout_height="match_parent"
-                        android:background="@color/color_gray"/>
+                        android:background="@color/color_gray" />
 
                     <TextView
+                        android:id="@+id/youhuijuan_tv"
                         android:layout_width="0dp"
                         android:layout_height="45dp"
                         android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
                         android:gravity="center"
-                        android:text="返劵/优惠券"/>
+                        android:text="返劵/优惠券" />
 
                 </LinearLayout>
             </RelativeLayout>
@@ -162,13 +170,13 @@
                     android:paddingLeft="16dp"
                     android:text="我的亚马逊"
                     android:textColor="@color/color_text_black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@id/my_fragment_order_my_yamaxun_tv"
-                    android:background="@color/color_gray"/>
+                    android:background="@color/color_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -177,43 +185,51 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/xinyuandan_tv"
                         android:layout_width="0dp"
-                        android:layout_height="80dp"
+                        android:layout_height="70dp"
                         android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
                         android:drawableTop="@mipmap/xinyuan"
                         android:gravity="center"
-                        android:padding="10dp"
-                        android:text="心愿单"/>
+                        android:padding="5dp"
+                        android:text="心愿单" />
 
 
                     <TextView
+                        android:id="@+id/zuijin_tv"
                         android:layout_width="0dp"
-                        android:layout_height="80dp"
+                        android:layout_height="70dp"
                         android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
                         android:drawableTop="@mipmap/zuijinlook"
                         android:gravity="center"
-                        android:padding="10dp"
-                        android:text="最近查看"/>
+                        android:padding="5dp"
+                        android:text="最近查看" />
 
 
                     <TextView
+                        android:id="@+id/tuijian_tv"
                         android:layout_width="0dp"
-                        android:layout_height="80dp"
+                        android:layout_height="70dp"
                         android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
                         android:drawableTop="@mipmap/tuijian"
                         android:gravity="center"
-                        android:padding="10dp"
-                        android:text="为我推荐"/>
+                        android:padding="5dp"
+                        android:text="为我推荐" />
 
 
                     <TextView
+                        android:id="@+id/shanghupingjia_tv"
                         android:layout_width="0dp"
-                        android:layout_height="80dp"
+                        android:layout_height="70dp"
                         android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
                         android:drawableTop="@mipmap/jiesheng"
                         android:gravity="center"
-                        android:padding="10dp"
-                        android:text="评论已购商品"/>
+                        android:padding="5dp"
+                        android:text="评论已购商品" />
                 </LinearLayout>
             </RelativeLayout>
             <!--我的亚马逊-->
@@ -234,13 +250,13 @@
                     android:paddingLeft="16dp"
                     android:text="联系我们"
                     android:textColor="@color/color_text_black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@id/my_fragment_order_callme_tv"
-                    android:background="@color/color_gray"/>
+                    android:background="@color/color_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -249,90 +265,106 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/fuwu_tv"
                         android:layout_width="0dp"
                         android:layout_height="45dp"
                         android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
                         android:drawableLeft="@mipmap/kefu"
                         android:gravity="center"
                         android:paddingLeft="40dp"
                         android:paddingRight="40dp"
-                        android:text="客户服务"/>
+                        android:text="客户服务" />
 
                     <View
                         android:layout_width="0.5dp"
                         android:layout_height="match_parent"
-                        android:background="@color/color_gray"/>
+                        android:background="@color/color_gray" />
 
                     <TextView
+                        android:id="@+id/fankui_tv"
                         android:layout_width="0dp"
                         android:layout_height="45dp"
                         android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
                         android:drawableLeft="@mipmap/fankui"
                         android:gravity="center"
                         android:paddingLeft="30dp"
                         android:paddingRight="30dp"
-                        android:text="App意见反馈"/>
+                        android:text="App意见反馈" />
                 </LinearLayout>
             </RelativeLayout>
             <!--联系我们-->
 
             <!--账户设置-->
             <RelativeLayout
-                android:id="@+id/my_fragment_content_zhanghu_container"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_margin="6dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/color_white"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp">
+                android:background="@color/color_white">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:text="账户设置"/>
+                <RelativeLayout
+                    android:id="@+id/my_fragment_content_zhanghu_container"
+                    style="@style/ViewBackGround"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="6dp"
-                    android:drawableRight="@mipmap/rs_carrot_right"
-                    android:gravity="center_vertical"
-                    android:text="开通消息提醒,管理收货地址"
-                    android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="账户设置" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="6dp"
+                        android:drawableRight="@mipmap/rs_carrot_right"
+                        android:gravity="center_vertical"
+                        android:text="开通消息提醒,管理收货地址"
+                        android:textSize="12sp" />
+                </RelativeLayout>
             </RelativeLayout>
             <!--账户设置-->
 
             <!--更换国家-->
             <RelativeLayout
-                android:id="@+id/my_fragment_content_guojia_container"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_margin="6dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/color_white"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp">
+                android:background="@color/color_white">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/my_fragment_content_guojia_container"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:text="更换国家"/>
+                    style="@style/ViewBackGround"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center_vertical"
-                    android:src="@mipmap/guoqi"
-                    android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="更换国家" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:src="@mipmap/guoqi"
+                        android:textSize="12sp" />
+                </RelativeLayout>
             </RelativeLayout>
             <!--更换国家-->
             <RelativeLayout
@@ -346,7 +378,7 @@
                     style="@style/AppCustomeBtnStyle"
                     android:layout_width="120dp"
                     android:layout_height="45dp"
-                    android:text="退出登录"/>
+                    android:text="退出登录" />
             </RelativeLayout>
 
 

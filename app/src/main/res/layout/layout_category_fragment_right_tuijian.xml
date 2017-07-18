@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:overScrollMode="never"
         android:scrollIndicators="none">
-        <!--秒杀部分-->
+
         <include layout="@layout/layout_category_fragment_right_tuijian_content"/>
     </com.alan.yamaxun.ui.view.DragScrollView>
 </RelativeLayout>
