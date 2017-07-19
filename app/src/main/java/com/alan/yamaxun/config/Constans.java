@@ -61,4 +61,7 @@ public interface Constans {
     //推荐页面的第二个GradView的数据
     int[] gradImageData2 = {R.mipmap.xiezi5, R.mipmap.xiezi9, R.mipmap.xiezi11, R.mipmap.xiezi3, R.mipmap.xiezi10, R.mipmap.xiezi12};
     String[] gradDescData2 = {"平底单鞋", "时尚高跟", "复古风格", "夏季凉鞋", "单鞋", "增高鞋"};
+
+    int[] gradPicData1 = {R.mipmap.pro1, R.mipmap.pro2, R.mipmap.pro3, R.mipmap.pro4, R.mipmap.pro5, R.mipmap.pro6, R.mipmap.pro7, R.mipmap.pro8, R.mipmap.pro9, R.mipmap.pro10};
+
 }
